@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function WhoAmI() {
+        console.log("I'm " + this.name + " of " + typeof this);
+      }
+      console.log("=====1");
+      WhoAmI();
+      console.log("=====2");
+      var BillGates = { name: "Bill Gates" };
+      BillGates.WhoAmI = WhoAmI;
+      BillGates.WhoAmI();
+
+      console.log("=====3");
+      var SteveJobs = { name: "Steve Jobs" };
+      SteveJobs.WhoAmI = WhoAmI;
+      SteveJobs.WhoAmI();
+
+      console.log("=====4");
+      WhoAmI.call(BillGates);
+      console.log("=====5");
+      WhoAmI.call(SteveJobs);
+
+      console.log("=====6");
+      BillGates.WhoAmI.call(SteveJobs);
+
+      console.log("=====7");
+      SteveJobs.WhoAmI.call(BillGates);
+
+      console.log("=====8");
+      WhoAmI.WhoAmI = WhoAmI;
+      WhoAmI.name = "WhoAmI";
+      WhoAmI.WhoAmI();
+
+      console.log("=====9");
+      ({ name: "nobody", WhoAmI: WhoAmI }).WhoAmI();
+    </script>
+  </body>
+</html>
